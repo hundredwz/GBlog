@@ -1,0 +1,130 @@
+{{define "content"}}
+
+<div class="col-md-12 col-sm-12" id="main" role="main">
+    <div class="table-caption">
+        <h4>管理评论</h4>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>作者</th>
+                <th></th>
+                <th>内容</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{$commentsLen:=len .Comments}}
+            {{if eq 0 $commentsLen}}
+            <tr>
+                <td>
+                    暂无数据
+                </td>
+            </tr>
+            {{else}}
+            {{range $key,$comment:=.Comments}}
+            {{$article:=index $comment "Article"}}
+            <tr>
+                <td>
+                    <img class="avatar" src="{{index $comment "AuthorAvatar"}}?s=40&amp;r=G&amp;d="
+                         alt="{{index $comment "Author"}}" width="40" height="40">
+                <td>
+                    <span><a href="{{index $comment "Url"}}"
+                             target="_blank">{{index $comment "Author"}}</a></span><br/>
+                    <span><a href="mailto:{{index $comment "Mail"}}">{{index $comment "Mail"}}</a></span><br/>
+                    <span>{{index $comment "Ip"}}</span>
+                </td>
+                <td>
+                    <span><time class="comment-time">{{index $comment "Created"}}</time>&nbsp;评论于<a
+                            href="/{{$article.Type}}?slug={{$article.Slug}}"
+                            target="_blank">{{$article.Title}}</a></span><br/>
+                    <span>{{index $comment "Text"}}</span><br/>
+                    <span class="comment-operation">
+                        <button id="comment-reply-{{index $comment "Coid"}}" value="{{$article.Cid}}"
+                                class="btn btn-sm btn-success">回复</button>
+                        <button id="comment-edit-{{index $comment "Coid"}}" class="btn btn-sm btn-warning">编辑</button>
+                    {{$status:=index $comment "Status"}}
+                    {{if eq $status "approved"}}
+                        <button id="comment-audit-{{index $comment "Coid"}}" class="btn btn-sm btn-info">审核</button>
+                    {{else if eq $status "waiting"}}
+                        <button id="comment-approve-{{index $comment "Coid"}}" class="btn btn-sm btn-info">通过</button>
+                    {{end}}
+                        <button id="comment-delete-{{index $comment "Coid"}}" class="btn btn-sm btn-danger">删除</button>
+                    </span>
+                </td>
+            </tr>
+            {{end}}
+            {{end}}
+            </tbody>
+        </table>
+    </div>
+    <div class="pull-right">
+        <ul class="pagination">
+        {{$currPage:=.CurrPage}}
+        {{range $key,$page:=.AllPages}}
+            <li {{if eq $currPage.Index $page.Index}}class="active" {{end}}>
+                <a href="/admin/comment/list?p={{$page.Index}}">{{$page.Index}}</a>
+            </li>
+        {{end}}
+        </ul>
+    </div>
+</div>
+
+<div class="modal fade" id="replyComment" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"
+                        aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    评论
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" role="form" id="comment-form">
+                    <input type="hidden" name="parent" id="comment-parent">
+                    <input type="hidden" name="coid" id="comment-coid">
+                    <input type="hidden" name="cid" id="comment-cid">
+                    <input type="hidden" name="created" id="comment-created">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="comment-username"
+                                   name="author"
+                                   value="{{.User.Name}}">
+                        </div>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="comment-mail"
+                                   name="mail"
+                                   value="{{.User.Mail}}">
+                        </div>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="comment-url"
+                                   name="url"
+                                   value="{{.User.Url}}">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-12">
+                            <textarea id="comment-text" class="form-control" rows="3"
+                                      name="text" placeholder="请输入评论内容"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-sm-3 pull-right">
+                            <button type="submit" class="btn btn-default"
+                                    id="comment-submit">提交
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+{{end}}

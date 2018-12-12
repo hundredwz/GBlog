@@ -1,0 +1,46 @@
+{{define "content"}}
+<div class="col-md-8 col-md-push-2 col-sm-12" id="main" role="main">
+
+    <article class="post">
+        <ol class="breadcrumb">
+            <li><a href="/">Home</a></li>
+        {{$category:=index .Article "Category"}}
+        {{if ne $category.Name ""}}
+            <li>
+                <a href="/category/{{$category.Slug}}">{{$category.Name}}</a>
+            </li>
+        {{end}}
+            <li class="active"><a
+                    href="/{{index .Article "Type"}}?slug={{index .Article "Slug"}}">{{index .Article "Title"}}</a>
+            </li>
+        </ol>
+        <div class="post-content">
+        {{index .Article "Text"}}
+        </div>
+        <p class="tags">
+        {{range $key,$tag:=index .Article "Tags"}}
+            <span class="label label-info"><a href="/tag/{{$tag.Slug}}">{{$tag.Name}}</a></span>
+        {{end}}
+        </p>
+    </article>
+
+    <div class="panel-group" id="comment-form">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <p class="panel-title text-center">
+                    <a data-toggle="collapse" data-parent="#comment-form"
+                       href="#comment">
+                        查看评论
+                    </a>
+                </p>
+            </div>
+            <div id="comment" class="panel-collapse collapse in">
+                <div class="panel-body">
+                {{template "comment" .}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+{{end}}

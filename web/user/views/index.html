@@ -1,0 +1,28 @@
+{{define "content"}}
+<div class="col-md-8 col-md-push-2 col-sm-12" id="main" role="main">
+
+{{range $key,$value := .Articles}}
+    <article class="post-list">
+        <div>
+            <a class="post-title" href="/article?slug={{index $value "Slug"}}">{{index $value "Title"}}</a>
+            <div class="pull-right p-time">
+                <i class="glyphicon glyphicon-time"></i> {{index $value "Modified"}}
+            </div>
+        </div>
+        <div class="post-content">
+        {{index $value "Text"}}
+        </div>
+    </article>
+{{end}}
+
+    <ul class="pager">
+        <li class="previous">
+            <a class="prev" href="/index?p={{.PrevPage}}">&larr;Previous</a>
+        </li>
+        <li class="next">
+            <a class="next" href="/index?p={{.NextPage}}">Next&rarr;</a>
+        </li>
+    </ul>
+
+</div><!-- end #main-->
+{{end}}

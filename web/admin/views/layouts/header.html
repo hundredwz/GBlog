@@ -1,0 +1,91 @@
+{{define "header"}}
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+<title>{{.BlogName}}--管理页面</title>
+
+<!-- 使用url函数转换相关路径 -->
+<link rel="stylesheet" href="/admin/static/css/bootstrap.min.css">
+<link rel="stylesheet" href="/admin/static/css/jquery-ui.min.css">
+<link rel="stylesheet" href="/admin/static/css/style.css">
+
+<script src="/admin/static/js/jquery.min.js"></script>
+<script src="/admin/static/js/jquery.form.min.js"></script>
+<script src="/admin/static/js/bootstrap.min.js"></script>
+<script src="/admin/static/js/admin.js"></script>
+
+
+<!-- 输出HTML头部信息 -->
+<meta name="description" content="{{.BlogDesc}}"/>
+<meta name="keywords" content="{{.BlogKeywords}}"/>
+<meta name="generator" content="GBlog"/>
+<body>
+<header>
+    <nav class="navbar navbar-default" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                        data-target="#navbar-collapse">
+                    <span class="sr-only">切换导航</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/admin">控制台</a>
+            </div>
+            <div>
+                <ul class="nav navbar-nav navbar-left">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            撰写 <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/admin/article/edit">新建文章</a></li>
+                            <li><a href="/admin/page/edit">新建页面</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            管理 <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/admin/article/list">文章</a></li>
+                            <li><a href="/admin/page/list">页面</a></li>
+                            <li><a href="/admin/comment/list">评论</a></li>
+                            <li><a href="/admin/category/list">分类</a></li>
+                            <li><a href="/admin/tag/list">标签</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            设置 <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/admin/setting/blog">博客设置</a></li>
+                            <li><a href="/admin/setting/user">用户设置</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        {{.User.Name}} <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/api/user/logout">退出</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/">网站</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+<div id="body">
+    <div class="container">
+        <div class="row">
+{{end}}

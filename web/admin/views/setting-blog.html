@@ -1,0 +1,95 @@
+{{define "content"}}
+
+<div class="col-md-12 col-sm-12" id="main" role="main">
+    <form class="form-horizontal" role="form" id="blog-config">
+        <div class="introduction">
+            <h4>
+                博客设置
+            </h4>
+        </div>
+        <div class="row">
+            <div class="col-md-8 center-block">
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="BlogName">名称</label>
+                    <div class="col-md-10">
+                        <input class="form-control" type="text" id="BlogName" name="BlogName" value="{{.BlogName}}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="BlogKeywords">缩略名</label>
+                    <div class="col-md-10">
+                        <input class="form-control col-md-10" type="text" id="BlogKeywords" name="BlogKeywords"
+                               value="{{.BlogKeywords}}">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="BlogDesc">博客描述</label>
+                    <div class="col-md-10">
+                        <input class="form-control col-md-10" type="text" id="BlogDesc" name="BlogDesc"
+                               value="{{.BlogDesc}}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="BlogCommentTimeFormat">评论时间格式</label>
+                    <div class="col-md-10">
+                        <input class="form-control col-md-10" type="text" id="BlogCommentTimeFormat"
+                               name="BlogCommentTimeFormat" value="{{.BlogCommentTimeFormat}}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="BlogCommentListNum">评论分页数目</label>
+                    <div class="col-md-10">
+                        <input class="form-control col-md-10" type="text" id="BlogCommentListNum"
+                               name="BlogCommentListNum" value="{{.BlogCommentListNum}}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="BlogCommentAvatarUrl">评论头像源</label>
+                    <div class="col-md-10">
+                        <input class="form-control col-md-10" type="text" id="BlogCommentAvatarUrl"
+                               name="BlogCommentAvatarUrl" value="{{.BlogCommentAvatarUrl}}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="BlogArticleTimeFormat">文章时间格式</label>
+                    <div class="col-md-10">
+                        <input class="form-control col-md-10" type="text" id="BlogArticleTimeFormat"
+                               name="BlogArticleTimeFormat"
+                               value="{{.BlogArticleTimeFormat}}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="BlogArticleNumEachPage">文章分页数量</label>
+                    <div class="col-md-10">
+                        <input class="form-control col-md-10" type="text" id="BlogArticleNumEachPage"
+                               name="BlogArticleNumEachPage"
+                               value="{{.BlogArticleNumEachPage}}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="BlogArticleNumEachPage">文章是否截取</label>
+                    <div class="col-md-10">
+                        <label class="radio-inline">
+                            <input type="radio" name="BlogArticleSub" id="BlogArticleSub" value="true" checked> 是
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="BlogArticleSub" id="BlogArticleSub" value="false"
+                                   {{if not .BlogArticleSub}}checked{{end}}> 否
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-2 pull-right">
+                        <button type="submit" class="btn btn-default"
+                                id="blog-config-setting">提交
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+{{end}}

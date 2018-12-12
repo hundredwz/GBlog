@@ -1,0 +1,82 @@
+{{define "content"}}
+
+<div class="col-md-12 col-sm-12" id="main" role="main">
+    <form class="form-horizontal" role="form" id="page-edit">
+        <input type="hidden" name="cid" value="{{.Page.Cid}}"/>
+        <input type="hidden" name="type" value="page">
+        <input type="hidden" name="status" value="publish">
+        <div class="row">
+            <div class="col-md-8 col-sm-12" id="main-part">
+                <div class="introduction">
+                    <h4>
+                    {{if .Page}}
+                        编辑&nbsp;{{.Page.Title}}
+                    {{else}}
+                        新建页面
+                    {{end}}
+                    </h4>
+                </div>
+                <div class="form-group">
+                    <input class="form-control" type="text" id="title" name="title" value="{{.Page.Title}}">
+                </div>
+                <div class="form-inline page-url">
+                    <div class="form-group">
+                        <label class="sr-only" for="slug">网址</label>{{.BlogUrl}}/page?slug=
+                        <input type="text" class="form-control input-sm"
+                               name="slug" id="slug"
+                               value="{{.Page.Slug}}">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <textarea class="form-control" name="text" id="text">{{.Page.Text}}</textarea>
+                </div>
+                <div class="form-group">
+                    <div class="pull-right">
+                        <button type="submit" class="btn btn-default"
+                                id="page-submit">发表
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-12" id="option-part">
+                <div class="form-group">
+                    <label>时间</label>
+                    <input type="datetime-local" name="created" class="form-control"
+                           value="{{formatTime .Page.Modified "2006-01-02T15:04"}}"
+                           placeholder="请选择日期"/>
+                </div>
+                <div class="form-group" id="advance-form">
+                    <a data-toggle="collapse" data-parent="#advance-form"
+                       href="#advance">
+                        高级设置
+                    </a>
+                    <div id="advance" class="panel-collapse collapse">
+                        <div class="checkbox">
+                            <label><input type="checkbox" name="allowComment"
+                                          {{if .Page.AllowComment}}checked{{end}}>允许评论</label>
+                        </div>
+                        <div class="checkbox">
+                            <label><input type="checkbox" name="allowPing"
+                                          {{if .Page.AllowPing}}checked{{end}}>允许引用</label>
+                        </div>
+                        <div class="checkbox">
+                            <label><input type="checkbox" name="allowFeed"
+                                          {{if .Page.AllowFeed}}checked{{end}}>允许在聚合中出现</label>
+                        </div>
+                    {{$status:= .Page.Status}}
+                        <label class="radio-inline">
+                            <input type="radio" name="status" id="article-status" value="publish" checked> 直接发表
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="status" id="article-status" value="draft"
+                                   {{if eq $status "draft"}}checked{{end}}> 草稿
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+{{end}}

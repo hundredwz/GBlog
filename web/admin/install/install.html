@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+<meta name="renderer" content="webkit">
+<meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1, user-scalable=no">
+<title>GBlog--管理页面</title>
+
+<!-- 使用url函数转换相关路径 -->
+<link rel="stylesheet" href="/admin/static/css/bootstrap.min.css">
+<link rel="stylesheet" href="/admin/static/css/jquery-ui.min.css">
+
+<script src="/admin/static/js/jquery.min.js"></script>
+<script src="/admin/static/js/jquery.form.min.js"></script>
+<script src="/admin/static/js/bootstrap.min.js"></script>
+
+
+<!-- 输出HTML头部信息 -->
+<meta name="generator" content="GBlog"/>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title  text-center">GBlog安装</h3>
+            </div>
+            <div class="panel-body">
+                <ul class="list-group">
+                    <li class="list-group-item">可能你想问</li>
+                    <li class="list-group-item">为何本页面这么丑？</li>
+                    <li class="list-group-item">因为我不会呀</li>
+                    <li class="list-group-item">废话少说</li>
+                    <li class="list-group-item">看下面安装</li>
+                </ul>
+
+                <form class="form-horizontal" role="form" id="gblog-install">
+                    <div class="row">
+                        <div class="col-md-6 col-sm-12" id="main-part">
+                            <div class="form-group">
+                                <label class="control-label col-md-2" for="BlogName">名称</label>
+                                <div class="col-md-10">
+                                    <input class="form-control" type="text" id="BlogName" name="BlogName">
+                                    <p class="help-block">填写博客的名称</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2" for="BlogDesc">描述</label>
+                                <div class="col-md-10">
+                                    <input class="form-control" type="text" id="BlogDesc" name="BlogDesc">
+                                    <p class="help-block">博客要用来做什么呢？</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2" for="BlogKeywords">关键词</label>
+                                <div class="col-md-10">
+                                    <input class="form-control" type="text" id="BlogKeywords" name="BlogKeywords">
+                                    <p class="help-block">博客的关键词</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2" for="username">用户名</label>
+                                <div class="col-md-10">
+                                    <input class="form-control" type="text" id="username" name="username">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2" for="password">密码</label>
+                                <div class="col-md-10">
+                                    <input class="form-control" type="password" id="password" name="password">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-12" id="db-part">
+                            <div class="form-group">
+                                <label class="control-label col-md-2" for="DBName">数据库名称</label>
+                                <div class="col-md-10">
+                                    <input class="form-control" type="text" id="DBName" name="DBName">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2" for="DBUser">数据库用户</label>
+                                <div class="col-md-10">
+                                    <input class="form-control" type="text" id="DBUser" name="DBUser">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label col-md-2" for="DBPwd">数据库密码</label>
+                                <div class="col-md-10">
+                                    <input class="form-control" type="password" id="DBPwd" name="DBPwd">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="pull-right">
+                                    <button class="btn btn-info" id="db-conn-test">测试连接</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class=" center-block btn btn-success" id="config-submit">安装</button>
+                    </div>
+                </form>
+
+                <ul class="list-group">
+                    <li class="list-group-item">是不是还是感觉看着有点难受？</li>
+                    <li class="list-group-item">想吐槽下？</li>
+                    <li class="list-group-item">想修改下？</li>
+                    <li class="list-group-item">欢迎来修改</li>
+                    <li class="list-group-item"><a href="https://github.com/hundredwz/GBlog">GBlog</a>随便fork,pr以及star
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        $("#db-conn-test").click(function () {
+            $.ajax({
+                type: "post",
+                url: "/api/install/dbtest",
+                data: {
+                    "DBName": $("#DBName").val(),
+                    "DBUser": $("#DBUser").val(),
+                    "DBPwd": $("#DBPwd").val()
+                },
+                success: function (result) {
+                    if (result.status === 2) {
+                        alert("连接数据库出错")
+                    } else if (result.status === 0) {
+                        alert("连接成功");
+                    } else {
+                        alert("系统内部错误");
+                    }
+                }
+            });
+            return false;
+        });
+        $('#gblog-install').on('submit', function () {
+            $(this).ajaxSubmit({
+                type: 'post',
+                url: '/api/install',
+                success: function (result) {
+                    if (result.status === 1) {
+                        alert("处理出错！请检查或重试！");
+                    } else if (result.status === 0) {
+                        alert("安装成功");
+                        window.location.href = "/"
+                    } else {
+                        alert("更新失败");
+                    }
+                }
+            });
+            return false; // 阻止表单自动提交事件
+        });
+    })
+</script>
+
+</body>
+</html>

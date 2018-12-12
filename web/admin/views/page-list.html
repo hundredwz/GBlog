@@ -1,0 +1,60 @@
+{{define "content"}}
+
+<div class="col-md-12 col-sm-12" id="main" role="main">
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <caption>页面管理</caption>
+            <thead>
+            <tr>
+                <th>缩略名</th>
+                <th>评论数</th>
+                <th>标题</th>
+                <th>日期</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{$pagesLen:=len .Pages}}
+            {{if eq 0 $pagesLen}}
+            <tr>
+                <td>
+                    暂无数据
+                </td>
+            </tr>
+            {{else}}
+            {{range $key,$page:=.Pages}}
+            <tr>
+                <td>{{index $page "Slug"}}</td>
+                <td><a href="/admin/comment/list?cid={{index $page "Cid"}}">{{index $page "CommentsNum"}}</a></td>
+                <td><a href="/admin/page/edit?slug={{index $page "Slug"}}">{{index $page "Title"}}</a>
+                    <a href="/page?slug={{index $page "Slug"}}"><span class="glyphicon glyphicon-link"></span></a>
+                </td>
+                <td>{{index $page "Created"}}</td>
+                <td>
+                    <button class="btn btn-xs btn-danger" id="page-delete-{{index $page "Cid"}}">删除</button>
+                {{$status:=index $page "Status"}}
+                {{if eq $status "draft"}}
+                    <button class="btn btn-xs btn-success" id="page-publish-{{index $page "Cid"}}">发表</button>
+                {{else if eq $status "publish"}}
+                    <button class="btn btn-xs btn-warning" id="page-draft-{{index $page "Cid"}}">草稿</button>
+                {{end}}
+                </td>
+            </tr>
+            {{end}}
+            {{end}}
+            </tbody>
+        </table>
+    </div>
+    <div class="pull-right">
+        <ul class="pagination">
+        {{$currPage:=.CurrPage}}
+        {{range $key,$page:=.AllPages}}
+            <li {{if eq $currPage.Index $page.Index}}class="active" {{end}}>
+                <a href="/admin/article/list?p={{$page.Index}}">{{$page.Index}}</a>
+            </li>
+        {{end}}
+        </ul>
+    </div>
+</div>
+
+{{end}}

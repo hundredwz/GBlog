@@ -1,0 +1,63 @@
+{{define "content"}}
+
+<div class="col-md-12 col-sm-12" id="main" role="main">
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <caption>文章管理</caption>
+            <thead>
+            <tr>
+                <th>缩略名</th>
+                <th>评论数</th>
+                <th>标题</th>
+                <th>分类</th>
+                <th>日期</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{$articlesLen:=len .Articles}}
+            {{if eq 0 $articlesLen}}
+            <tr>
+                <td>
+                    暂无数据
+                </td>
+            </tr>
+            {{else}}
+            {{range $key,$article:=.Articles}}
+            <tr>
+                <td>{{index $article "Slug"}}</td>
+                <td><a href="/admin/comment/list?cid={{index $article "Cid"}}">{{index $article "CommentsNum"}}</a></td>
+                <td><a href="/admin/article/edit?slug={{index $article "Slug"}}">{{index $article "Title"}}</a>
+                    <a href="/article?slug={{index $article "Slug"}}"><span class="glyphicon glyphicon-link"></span></a>
+                </td>
+                <td>{{$category:=index $article "Category"}}
+                    <a href="/admin/category/edit?s={{$category.Slug}}">{{$category.Name}}</a></td>
+                <td>{{index $article "Created"}}</td>
+                <td>
+                    <button class="btn btn-xs btn-danger" id="article-delete-{{index $article "Cid"}}">删除</button>
+                {{$status:=index $article "Status"}}
+                {{if eq $status "draft"}}
+                    <button class="btn btn-xs btn-success" id="article-publish-{{index $article "Cid"}}">发表</button>
+                {{else if eq $status "publish"}}
+                    <button class="btn btn-xs btn-warning" id="article-draft-{{index $article "Cid"}}">草稿</button>
+                {{end}}
+                </td>
+            </tr>
+            {{end}}
+            {{end}}
+            </tbody>
+        </table>
+    </div>
+    <div class="pull-right">
+        <ul class="pagination">
+        {{$currPage:=.CurrPage}}
+        {{range $key,$page:=.AllPages}}
+            <li {{if eq $currPage.Index $page.Index}}class="active" {{end}}>
+                <a href="/admin/article/list?p={{$page.Index}}">{{$page.Index}}</a>
+            </li>
+        {{end}}
+        </ul>
+    </div>
+</div>
+
+{{end}}

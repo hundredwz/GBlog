@@ -1,0 +1,120 @@
+html, body {
+    font-family: "微软雅黑", 'Lato', sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 25px;
+}
+
+* {
+    list-style: none;
+    text-decoration: none;
+}
+
+#main #overview {
+    color: #999;
+    font-size: 1.15em;
+    margin-bottom: 25px;
+    padding: 0 0 35px;
+    border-bottom: 1px solid #ECECEC;
+}
+
+#main #overview em {
+    color: #444;
+    font-size: 2em;
+    font-style: normal;
+    font-family: Georgia, serif;
+}
+
+#main #overview #shortcuts {
+    margin-top: 25px;
+    font-size: 1.3em;
+}
+
+#articles, #pages, #comments {
+    padding: 0;
+}
+
+#articles li, #pages li, #comments li {
+    margin-bottom: 3px;
+}
+
+#articles li a, #pages li a, #comments li {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#articles li span, #pages li span, #comments li span {
+    display: inline-block;
+    margin-right: 4px;
+    padding-right: 8px;
+    border-right: 1px solid #ECECEC;
+    text-align: right;
+    color: #999;
+}
+
+#article-edit #text {
+    height: 350px;
+}
+
+#article-edit .form-group {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+#article-edit .article-url {
+    margin-bottom: 15px;
+}
+
+#article-edit .article-url #slug {
+    border: none;
+    background: #FFFBCC;
+    color: #666;
+}
+
+#page-edit #text {
+    height: 350px;
+}
+
+#page-edit .form-group {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+#page-edit .page-url {
+    margin-bottom: 15px;
+}
+
+#page-edit .page-url #slug {
+    border: none;
+    background: #FFFBCC;
+    color: #666;
+}
+
+.tagList {
+    border-right: 1px solid cornflowerblue;
+}
+
+.tagLink {
+    margin-right: 5px;
+}
+
+#tag-delete {
+    display: none;
+}
+
+.table-caption h4 a {
+    margin-left: 5px;
+    padding: 3px 8px;
+    background: #E9E9E6;
+    font-size: .8em;
+    border-radius: 2px
+}
+
+.comment-operation {
+    margin-top: 5px;
+}
+
+.comment-operation button {
+    border: none;
+}

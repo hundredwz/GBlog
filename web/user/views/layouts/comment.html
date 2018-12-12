@@ -1,0 +1,82 @@
+{{define "comment"}}
+<div id="comments" class="cf">
+    <ul class="comment-list">
+    {{range $key,$comment:= .Comments}}
+        <li id="li-comment-{{index $comment "Coid"}}" class="comment-body comment-parent comment-odd">
+            <div id="comment-{{index $comment "Coid"}}">
+                <img class="avatar" src="{{index $comment "AuthorAvatar"}}?s=80&amp;r=G&amp;d="
+                     alt="{{index $comment "Author"}}" width="80" height="80">
+                <div class="comment-main">
+                    <p>{{index $comment "Text"}}</p>
+                    <div class="comment-meta">
+                        <span class="comment-author"><a href="{{index $comment "Url"}}">{{index $comment "Author"}}</a></span>
+                        <time class="comment-time">{{index $comment "Created"}}</time>
+                        <span class="comment-reply"><button id="comment-reply-{{index $comment "Coid"}}"
+                                                            class="btn btn-sm btn-default">回复</button></span>
+                    </div>
+                </div>
+            </div>
+        </li>
+    {{end}}
+    </ul>
+    <div class="modal fade" id="replyComment" tabindex="-1" role="dialog"
+         aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"
+                            aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        你想说什么
+                    </h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" role="form" id="comment-form">
+                        <input type="hidden" name="parent" id="comment-parent">
+                        <input type="hidden" name="cid" id="comment-cid" value="{{index .Article "Cid"}}">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="username"
+                                       name="author"
+                                       placeholder="请输入名字">
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="mail"
+                                       name="mail"
+                                       placeholder="请输入邮箱">
+                            </div>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="url"
+                                       name="url"
+                                       placeholder="请输入网址">
+                            </div>
+                        </div>
+
+
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                                <textarea id="commentContent" class="form-control" rows="3"
+                                                          name="text" placeholder="请输入评论内容"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-3 pull-right">
+                                <button type="submit" class="btn btn-default"
+                                        id="comment-submit">评论
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+</div>
+<div class="pull-right">
+    <button id="comment-new-reply" class="btn btn-success">新建评论</button>
+</div>
+
+{{end}}

@@ -1,0 +1,50 @@
+{{define "content"}}
+
+<div class="col-md-12 col-sm-12" id="main" role="main">
+    <form class="form-horizontal" role="form" id="category-edit">
+        <input type="hidden" name="type" value="{{.MetaType}}">
+        <input type="hidden" name="mid" value="{{.Meta.Mid}}">
+        <div class="introduction">
+            <h4>
+            {{if .Meta}}
+                编辑&nbsp;{{.Meta.Name}}
+            {{else}}
+                新建
+            {{end}}
+            </h4>
+        </div>
+        <div class="row">
+            <div class="col-md-8 center-block">
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="name">名称</label>
+                    <div class="col-md-10">
+                        <input class="form-control" type="text" id="name" name="name" value="{{.Meta.Name}}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="slug">缩略名</label>
+                    <div class="col-md-10">
+                        <input class="form-control col-md-10" type="text" id="slug" name="slug" value="{{.Meta.Slug}}">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2" for="description">介绍</label>
+                    <div class="col-md-10">
+                    <textarea class="form-control col-md-10" name="description"
+                              id="description">{{.Meta.Description}}</textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-2 pull-right">
+                        <button type="submit" class="btn btn-default"
+                                id="meta-submit">发表
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+{{end}}

@@ -1,0 +1,42 @@
+{{define "content"}}
+
+<div class="col-md-12 col-sm-12" id="main" role="main">
+    <div class="table-caption">
+        <h4>管理分类<a href="/admin/category/edit">新建</a></h4>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>名称</th>
+                <th>缩略名</th>
+                <th>文章数</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{$catLen:=len .CategoryList}}
+            {{if eq 0 $catLen}}
+            <tr>
+                <td>
+                    暂无数据
+                </td>
+            </tr>
+            {{else}}
+            {{range $key,$category:=.CategoryList}}
+            <tr>
+                <td><a href="/admin/category/edit?slug={{$category.Slug}}">{{$category.Name}}</a></td>
+                <td>{{$category.Slug}}</td>
+                <td>{{$category.Count}}</td>
+                <td>
+                    <button class="btn btn-xs btn-danger" id="category-delete-{{$category.Mid}}">删除</button>
+                </td>
+            </tr>
+            {{end}}
+            {{end}}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{{end}}

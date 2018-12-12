@@ -1,0 +1,55 @@
+{{define "content"}}
+
+<div class="col-md-12 col-sm-12" id="main" role="main">
+
+    <div id="overview">
+        目前已经有了<em>{{.ArticleCount}}</em>个文章，<em>{{.PageCount}}</em>个页面，<em>{{.CommentCount}}</em>个评论，<em>{{.CategoryCount}}</em>个分类，<em>{{.TagCount}}</em>个标签。
+        <div id="shortcuts">
+            <ul class="list-inline">
+                <li><a href="/admin/article/edit">创建文章</a></li>
+                <li><a href="/admin/article/list">管理文章</a></li>
+                <li><a href="/admin/comment/list">评论评论</a></li>
+            </ul>
+        </div>
+    </div>
+    <div id="contents">
+        <div class="row">
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <h3>最近的文章</h3>
+                <ul id="articles">
+                {{range $key,$article:=.Articles}}
+                    <li>
+                        <span>{{formatTime $article.Modified "01-02"}}</span>
+                        <a href="/article?slug={{$article.Slug}}">{{$article.Title}}</a>
+                    </li>
+                {{end}}
+                </ul>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <h3>最近的页面</h3>
+                <ul id="pages">
+                {{range $key,$page:=.Pages}}
+                    <li>
+                        <span>{{formatTime $page.Modified "01-02"}}</span>
+                        <a href="/page?slug={{$page.Slug}}">{{$page.Title}}</a>
+                    </li>
+                {{end}}
+                </ul>
+            </div>
+            <div class="col-md-4 col-sm-4 col-xs-12">
+                <h3>最近的评论</h3>
+                <ul id="comments">
+                {{range $key,$comment:=.Comments}}
+                    <li>
+                        <span>{{formatTime $comment.Created "15:04"}}</span>
+                        <a href="{{$comment.Url}}">{{$comment.Author}}</a>:&nbsp;{{$comment.Text}}
+                    </li>
+                {{end}}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{{end}}

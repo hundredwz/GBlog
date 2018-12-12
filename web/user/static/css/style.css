@@ -1,0 +1,288 @@
+
+img {
+    height: auto; /* Make sure images are scaled correctly. */
+    max-width: 100%; /* Adhere to container width. */
+}
+
+table {
+    margin: 0 0 1.5em;
+    width: 100%;
+}
+
+/*--------------------------------------------------------------
+# index
+--------------------------------------------------------------*/
+.post-list {
+    margin-top: 30px;
+}
+
+.post-list .post-title {
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 50px;
+    position: relative;
+    z-index: 1;
+}
+
+.post-list .post-content {
+    min-height: 60px;
+    font-size: 15px;
+    font-family: miranafont, "Hiragino Sans GB", STXihei, "Microsoft YaHei", SimSun, sans-serif;
+    color: #828282;
+    letter-spacing: 1px;
+    line-height: 30px;
+}
+
+.p-time {
+    color: #989898;
+    letter-spacing: 1px;
+    font-family: din, 'Hiragino Sans GB', 'Microsoft Yahei', Arial, sans-serif;
+}
+
+/*--------------------------------------------------------------
+# content
+--------------------------------------------------------------*/
+
+.post .post-content ul {
+    list-style: disc;
+    background: #F9F9F9;
+    border: 1px dashed #E4E4E4;
+    padding: 15px 10px 15px 50px;
+    color: #616161;
+    margin-left: 0;
+}
+
+.post .post-content ol {
+    list-style: decimal;
+    background: #F9F9F9;
+    border: 1px dashed #E4E4E4;
+    padding: 15px 10px 15px 50px;
+    color: #616161;
+    margin-left: 0;
+}
+
+.post .post-content ol li, .post .post-content ul li {
+    padding: 8px 0;
+}
+
+.post .post-content {
+    position: relative;
+}
+
+.post .post-content h3 {
+    padding-bottom: 8px;
+    border-bottom: 1px dashed #ddd;
+    color: #737373;
+}
+
+.post .post-content h3:before {
+    content: "[";
+    margin-right: 5px;
+    color: #FF6D6D;
+    font-size: 25px;
+}
+
+.post .post-content h3:after {
+    content: "]";
+    margin-left: 5px;
+    color: #FF6D6D;
+    font-size: 25px;
+}
+
+.post .post-content a {
+    color: #E67474;
+    text-decoration: underline;
+}
+
+.post .post-content a:hover {
+    color: #72C5A6;
+}
+
+h1.entry-title {
+    font-size: 22px;
+    font-weight: 300;
+}
+
+.post .post-content p {
+    color: #797979
+}
+
+.post .post-content p {
+    line-height: 30px
+}
+
+.entry-header hr {
+    width: 30%;
+    height: 1px;
+    border: 0;
+    background: #EFEFEF;
+    margin: 20px 0;
+}
+
+.Extendfull img {
+    width: 100%;
+    border: 5px solid #F3F3F3;
+}
+
+/*--------------------------------------------------------------
+# comment
+--------------------------------------------------------------*/
+
+#comments {
+    margin-top: 15px
+}
+
+#comments .page-navigator {
+    margin: 1rem 0 0
+}
+
+#comments a {
+    color: #aaa
+}
+
+#comments a:hover {
+    color: #f08f00
+}
+
+.comment-list {
+    padding-left: 0;
+    list-style-type: none;
+    margin: 0
+}
+
+.avatar {
+    display: block;
+    float: left;
+    width: 40px;
+    height: 40px;
+    margin: 1.4rem 1rem 0 0;
+    border-radius: 50%
+}
+
+.response {
+    color: #999;
+    font-weight: 400;
+    font-size: .9rem
+}
+
+.comment-num {
+    color: #999;
+    font-weight: 400;
+    font-size: .9rem
+}
+
+.comment-main {
+    overflow: hidden;
+    padding: 1rem 0;
+    border-bottom: 1px dotted #e0e0e0
+}
+
+.comment-main p {
+    margin: 0
+}
+
+.comment-meta, .cancel-comment-reply {
+    font-size: .8rem;
+    margin-top: 1rem;
+    color: #aaa
+}
+
+.comment-meta .comment-reply {
+    float: right
+}
+
+.comment-reply {
+    float: right;
+    display: none
+}
+
+.comment-main:hover .comment-reply {
+    display: block
+}
+
+.comment-main:hover .comment-time {
+    display: none;
+}
+
+.comment-author {
+    padding: .1rem .25rem;
+    border-radius: .25rem;
+    background: #eee;
+    font-size: .7rem
+}
+
+.comment-author:hover, .comment-author:hover a, .comment-author a:hover {
+    color: #f08f00 !important;
+    background: rgba(255, 152, 0, 0.1)
+}
+
+.comment-time {
+    display: block;
+    float: right;
+}
+
+.comment-time:before, .comment-reply a:before {
+    margin: 0 .5rem
+}
+
+.comment-parent > .comment-children {
+    margin-left: 1rem;
+    padding-left: 40px
+}
+
+.form-control {
+    width: 100%;
+    height: 34px;
+    margin: 15px 0;
+    padding: 6px 12px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px
+}
+
+.form-control, output {
+    font-size: 14px;
+    line-height: 1.42857;
+    color: #555;
+    display: block
+}
+
+.form-control:focus {
+    border-color: #f77b83;
+    outline: 0
+}
+
+textarea.form-control {
+    width: 100%;
+    height: 10rem;
+    resize: none
+}
+
+.submit {
+    border: 1px solid #ccc;
+    line-height: 36px;
+    text-align: center;
+    height: 36px;
+    padding: 0 25px;
+    margin: 0 auto;
+    display: block;
+    border-radius: 4px;
+    -webkit-transition-duration: 400ms;
+    transition-duration: 400ms;
+    background-color: #fff;
+    color: #999
+}
+
+.submit:hover, .submit:focus, .submit:active, .submit:active:focus {
+    color: #f77b83;
+    border-color: #f77b83;
+    outline-style: none
+}
+
+/*--------------------------------------------------------------
+# footer
+--------------------------------------------------------------*/
+#footer {
+    margin-top: 5%;
+}
+
