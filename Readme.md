@@ -10,13 +10,13 @@ The reason why I want to adapt it to golang is mainly due to the fact that I wan
 
 There are some features about it, although I think they are unnecessary to be presented.
 
-1. MVC
+1. MVC  
 I use mvc architecture to build this system. You can find that from the packages.
 
-2. Ajax submit
+2. Ajax submit  
 Most of the backend operations are executed on ajax.
 
-3. Not fully-supported orm
+3. Not fully-supported orm  
 I write some orm operations for the project. But it's incomplete. However, I think it's enough for the project.
 
 I think the structure of this project is on some conditions, clean. You can easily find what one package works.
