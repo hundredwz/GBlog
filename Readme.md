@@ -57,3 +57,7 @@ I work on this project on my spare time. As a result, it's bound that there many
 If you have any problems, you can find me in [Hundred Blog](https://txiner.top) or write to me [Hundred](mailto:sdwangzhuo@gmail.com)
 
 The project is under MIT license.
+
+## Acknowledgements
+
+All thanks to my girlfriend. It's her support and encouragement that help me complete this project. Besides, I should also thank my friends, without whom I couldn't find the bugs and the problems.
