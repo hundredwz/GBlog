@@ -46,9 +46,7 @@ GBlog -p port
 ```
 this command can help run the system with your custom port. The default port is 701.
 
-Anything else?
-
-I think the answer is no.
+You can also visit [GBlog](http://gblog.txiner.top) to have a first view on it. The administrator account is admin and the password is 123456.
 
 ## Contributions
 
